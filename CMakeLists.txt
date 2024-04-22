@@ -7,4 +7,7 @@ add_executable(
         main.cpp
         test.cpp
         main.cpp
-        main.cpp)
+        main.cpp
+        linkedQueue.h
+        Array_Based_Queue.h
+)
