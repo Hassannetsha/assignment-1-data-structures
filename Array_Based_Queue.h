@@ -1,7 +1,3 @@
-//
-// Created by 1243h on 4/22/2024.
-//
-
 #ifndef ASSIGNMENT_DATA_STRUCTURES_ARRAY_BASED_QUEUE_H
 #define ASSIGNMENT_DATA_STRUCTURES_ARRAY_BASED_QUEUE_H
 #include <iostream>
@@ -23,33 +19,31 @@ public:
     Array_Based_Queue(const int& size) {
         queue = new T[size];
         this->size = size;
-        size = size;
+        index = -1;
         front = 0;
     }
     bool isEmpty() {
         return index <= 0 ;
     }
     bool isFull(){
-        return index>=size  ;
+        return index+1>=size  ;
     }
     void enqueue(const T& data) {
-        if(index == (-1)){
+        if(index == (-1)&&size==0){
             size = 10;
             queue = new T[size];
             queue[++index] = data;
         }
         else if (isFull()){
-//            if(!isEmpty()){
-                T *newQueue = new T[size * 2], *deleteOld;
-                for (int i = 0; i <= index; ++i) {
-                    newQueue[i] = queue[i];
-                }
-                deleteOld = queue;
-                delete[] deleteOld;
-                queue = newQueue;
-                queue[++index] = data;
-                size = size * 2;
-//            }
+            T *newQueue = new T[size * 2], *deleteOld;
+            for (int i = 0; i <= index; ++i) {
+                newQueue[i] = queue[i];
+            }
+            deleteOld = queue;
+            delete[] deleteOld;
+            queue = newQueue;
+            queue[++index] = data;
+            size = size * 2;
         }
         else{
             queue[++index] = data;
@@ -61,6 +55,7 @@ public:
         }
         else {
             cout << "can'T delete an empty queue\n";
+            cout<<"trash element ";
             return INFINITY;
         }
     }
@@ -71,7 +66,7 @@ public:
         return queue[index];
     }
     int queueSize() {
-        return (index==-1);
+        return index+1;
     }
     void clear() {
         if (!isEmpty()) {
@@ -91,6 +86,7 @@ public:
         }
         else{
             cout<<"queue is empty\n";
+
         }
     }
     ~Array_Based_Queue()
