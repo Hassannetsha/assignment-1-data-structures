@@ -1,8 +1,4 @@
-#ifndef ASSIGNMENT_DATA_STRUCTURES_ARRAY_BASED_QUEUE_H
-#define ASSIGNMENT_DATA_STRUCTURES_ARRAY_BASED_QUEUE_H
-
 #include <iostream>
-#include <cmath>
 
 using namespace std;
 
@@ -15,36 +11,32 @@ class Array_Based_Queue {
     int ctn{};
 public:
     Array_Based_Queue() {
-        queue = nullptr;
+        size = 5;
+        queue = new T[size];
         rear = -1;
-        size = 0;
         ctn = 0;
-        front = -1;
+        front = 0;
     }
 
     explicit Array_Based_Queue(const int &size) {
         queue = new T[size];
         this->size = size;
         rear = -1;
-        front = -1;
+        front = 0;
         ctn = 0;
     }
 
     bool isEmpty() {
-        return rear == front;
+        return ctn==0;
     }
 
     bool isFull() {
-        return (rear + 1) % size == front;
+        return ctn==size;
     }
 
     void enqueue(const T &data) {
-        if (rear == (-1) && size == 0) {
-            size = 10;
-            queue = new T[size];
-            rear = (rear + 1) % size;
-            queue[rear] = data;
-        } else if (isFull() && size != 0) {
+            if (isFull()) {
+            cout<<"Deque is Expanding ";
             T *newQueue = new T[size * 2], *deleteOld;
             for (int i = 0; i <= rear; ++i) {
                 newQueue[i] = queue[i];
@@ -55,10 +47,8 @@ public:
             size = size * 2;
             rear = (rear + 1) % size;
             queue[rear] = data;
+            ctn++;
         } else {
-            if (front == -1&&ctn!=0) {
-                front = 0;
-            }
             rear = (rear + 1) % size;
             queue[rear] = data;
             ctn++;
@@ -66,10 +56,10 @@ public:
     }
 
     T dequeue() {
-        T default_value;
         if (!isEmpty()) {
             int number = front;
             front = (front+1)%size;
+            ctn--;
             return queue[number];
         } else {
             cout << "can'T delete an empty queue\n";
@@ -77,13 +67,9 @@ public:
             return T();
         }
     }
-
     T first() {
         if (!isEmpty()) {
-            if(ctn==0){
-                return queue[rear];
-            }
-            else{ return queue[front]; }
+            return queue[front];
         }
         else {
             cout << "Queue is empty\n";
@@ -91,7 +77,6 @@ public:
             return T();
         }
     }
-
     T back() {
         if (!isEmpty()) { return queue[rear]; }
         else {
@@ -100,21 +85,19 @@ public:
             return T();
         }
     }
-
     int queueSize() {
-        return rear + 1;
+        return ctn;
     }
-
     void clear() {
         if (!isEmpty()) {
             rear = -1;
             front = -1;
+            ctn = 0;
             delete[] queue;
         } else {
             cout << "It is already empty\n";
         }
     }
-
     void print() {
         if (!isEmpty()) {
             if(ctn!=1){
@@ -134,7 +117,6 @@ public:
             cout << '\n';
         } else {
             cout << "queue is empty\n";
-
         }
     }
 
@@ -142,5 +124,31 @@ public:
         if (!isEmpty()) { delete[] queue; }
     }
 };
-
-#endif //ASSIGNMENT_DATA_STRUCTURES_ARRAY_BASED_QUEUE_H
+int main(){
+    Array_Based_Queue<int> arr;
+    arr.enqueue(1);
+    arr.enqueue(2);
+    cout<<arr.first()<<' ';
+    cout<<arr.back()<<'\n';
+    cout<<"print elements\n";
+    arr.print();
+    arr.enqueue(3);
+    arr.enqueue(4);
+    arr.enqueue(5);
+    arr.enqueue(6);
+    arr.enqueue(7);
+    arr.enqueue(8);
+    cout<<"print elements\n";
+    arr.print();
+    cout<<"queue size "<<arr.queueSize()<<'\n';
+    cout<<"first dequeue "<<arr.dequeue()<<'\n';
+    cout<<"second dequeue "<<arr.dequeue()<<'\n';
+    cout<<"third dequeue "<<arr.dequeue()<<'\n';
+    cout<<"fourth dequeue "<<arr.dequeue()<<'\n';
+    cout<<"fifth dequeue "<<arr.dequeue()<<'\n';
+    arr.clear();
+    cout<<"sixth dequeue "<<arr.dequeue()<<'\n';
+    cout<<"queue size "<<arr.queueSize()<<'\n';
+    cout<<"print elements\n";
+    arr.print();
+}

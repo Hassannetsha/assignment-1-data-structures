@@ -117,4 +117,4 @@ public:
     }
 };
 
-#endif //ASSIGNMENT_DATA_STRUCTURES_LINKEDQUEUE_H
+#endif

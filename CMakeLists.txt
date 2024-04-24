@@ -9,7 +9,7 @@ add_executable(
         main.cpp
         main.cpp
         linkedQueue.h
-        Array_Based_Queue.h
+        Array_Based_Queue.cpp
         Student.cpp
         Student.h
         SORTING/insertion_sort.h
