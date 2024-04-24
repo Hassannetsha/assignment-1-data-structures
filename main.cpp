@@ -1,6 +1,8 @@
-#include <bits/stdc++.h>
+#include "SORTING/Sort.h"
 using namespace std;
 int main(){
-    int x =10;
-    cout<<x;
+    vector<Student> st;
+    st = open_file();
+    sort_students(st);
+    print(st);
 }

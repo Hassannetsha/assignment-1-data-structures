@@ -10,4 +10,10 @@ add_executable(
         main.cpp
         linkedQueue.h
         Array_Based_Queue.h
+        Student.cpp
+        Student.h
+        SORTING/insertion_sort.h
+        SORTING/quick_sort.h
+        SORTING/selection_sort.h
+        SORTING/Sort.h
 )
