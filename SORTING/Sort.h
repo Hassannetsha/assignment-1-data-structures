@@ -12,14 +12,17 @@ void Choosen_sort(int SortType,const string& type,vector<t>& arr, int choice){
             insertion_sort(arr,(int)arr.size(),choice);
             break;
         case 2:
+            selection(arr,(int)arr.size(),choice);
             break;
         case 3:
+
             break;
         case 4:
             break;
         case 5:
             break;
         case 6:
+            quick_sort(arr,0,arr.size(),choice);
             break;
         case 7:
             break;

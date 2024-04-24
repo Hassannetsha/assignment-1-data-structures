@@ -30,6 +30,14 @@ string Student::getId() {
     return id;
 }
 
+bool Student::operator<=(const Student &student) {
+    return (this->name <= student.name);
+}
+
+bool Student::operator>(const Student &student) {
+    return (this->name > student.name);
+}
+
 vector<Student> open_file() {
     vector<Student> students;
     ifstream file("students.txt");

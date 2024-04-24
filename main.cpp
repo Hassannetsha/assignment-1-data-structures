@@ -1,4 +1,5 @@
 #include "SORTING/Sort.h"
+#include "Student.cpp"
 using namespace std;
 int main(){
     vector<Student> st;

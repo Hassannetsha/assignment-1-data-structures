@@ -299,15 +299,3 @@ int main(){
     cout<<"_________________________________"<<"\n";
     cout<<c.retrieveAt(1);
 }
-
-/*
-void selection(int arr[], int n){
-    for (int i = 0; i < n-1; i++) {
-        for (int j = i+1; j < n ; j++) {
-            int min = i;
-            if (arr[j] < arr[min])
-                min = j;
-            swap(arr[min],arr[i]);
-        }
-    }
-}*/

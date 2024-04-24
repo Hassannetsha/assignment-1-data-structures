@@ -17,6 +17,8 @@ public:
     Student() = default;
     Student(const string &id, const string &name, const int &gpa);
     bool operator<(const Student &student);
+    bool operator<=(const Student &student);
+    bool operator>(const Student &student);
     friend ostream &operator<<(ostream &os, const Student &student);
     string getId();
     string getName();
