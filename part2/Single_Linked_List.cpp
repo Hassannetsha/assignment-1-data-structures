@@ -20,17 +20,41 @@ public:
             last = last->next;
         }
     }
-    void swap(int index1, int index2) {
+        void swap(int index1, int index2) {
         if (index1 == index2) return;
-        Node* p = head;
-        Node* q = head;
-        for (int i = 0; i < index1 && p; ++i) p = p->next;
-        for (int i = 0; i < index2 && q; ++i) q = q->next;
-        if (!p || !q) return;
-        T temp = p->data;
-        p->data = q->data;
-        q->data = temp;
+
+        Node* prev1 = nullptr;
+        Node* curr1 = head;
+        for (int i = 0; i < index1 && curr1; ++i) {
+            prev1 = curr1;
+            curr1 = curr1->next;
+        }
+
+        Node* prev2 = nullptr;
+        Node* curr2 = head;
+        for (int i = 0; i < index2 && curr2; ++i) {
+            prev2 = curr2;
+            curr2 = curr2->next;
+        }
+
+
+        if (!curr1 || !curr2) return;
+
+        if (prev1)
+            prev1->next = curr2;
+        else
+            head = curr2;
+
+        if (prev2)
+            prev2->next = curr1;
+        else
+            head = curr1;
+
+        Node* temp = curr1->next;
+        curr1->next = curr2->next;
+        curr2->next = temp;
     }
+
     bool isItemAtEqual(const T& value, int index) {
         Node* p = head;
         for (int i = 0; i < index && p; ++i) p = p->next;
