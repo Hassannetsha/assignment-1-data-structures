@@ -12,33 +12,32 @@ Student::Student(const string &id, const string &name, const int &gpa) {
 bool Student::operator<(const Student &student) {
     if (!sortByGpa) {
         return (this->name < student.name);
-    }
-    else {
+    } else {
         return this->gpa < student.gpa;
     }
 }
 
 ostream &operator<<(ostream &os, const Student &student) {
-    os << student.name << '\n'<< student.id<< '\n'<< student.gpa;
+    os << student.name << '\n' << student.id << '\n' << student.gpa;
     return os;
 }
 
 bool Student::operator<=(const Student &student) const {
-    if(sortByGpa){
+    if (sortByGpa) {
         return (this->gpa <= student.gpa);
-    }
-    else{
+    } else {
         return (this->name <= student.name);
     }
 }
+
 bool Student::operator>(const Student &student) {
-    if(!sortByGpa){
+    if (!sortByGpa) {
         return (this->name > student.name);
-    }
-    else{
+    } else {
         return (this->gpa > student.gpa);
     }
 }
+
 vector<Student> open_file() {
     vector<Student> students;
     ifstream file("students.txt");
@@ -59,44 +58,89 @@ vector<Student> open_file() {
     return students;
 }
 
+bool Student::operator>=(const Student &student) {
+    if (!sortByGpa) {
+        return (this->name >= student.name);
+    } else {
+        return (this->gpa >= student.gpa);
+    }
+}
+
 template<typename t>
 void print(vector<t> students) {
     vector<t> copy = students;
     //sort by Gpa
-    ofstream outFile1("SortedByGPA.txt");
     //insertion sort
-    auto startTime = std::chrono::steady_clock::now();
-    insertion_sort(students,students.size());
-    auto endTime = std::chrono::steady_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
-    outFile1<<"Algorithm: Insertion Sort\n";
-    outFile1<<"Running Time:"<<duration.count()<<" milliseconds"<<"\n";
-    for (auto const &j:students) {
-        outFile1<<j<<'\n';
+    ofstream outFile1("SortedByGPA.txt");
+    auto startTime = chrono::steady_clock::now();
+    insertion_sort(students, students.size());
+    auto endTime = chrono::steady_clock::now();
+    auto duration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    outFile1 << "Algorithm: Insertion Sort\n";
+    outFile1 << "Running Time:" << duration.count() << " nanoseconds" << "\n";
+    for (auto const &j: students) {
+        outFile1 << j << '\n';
     }
+    outFile1<<'\n'<<'\n';
     students = copy;
     //selection sort
-    startTime = std::chrono::steady_clock::now();
-    selection(students,students.size());
-    endTime = std::chrono::steady_clock::now();
-    duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
-    outFile1<<"Algorithm: Selection Sort\n";
-    outFile1<<"Running Time:"<<duration.count()<<" milliseconds"<<"\n";
-    for (auto const &j:students) {
-        outFile1<<j<<'\n';
+    startTime = chrono::steady_clock::now();
+    selection(students, students.size());
+    endTime = chrono::steady_clock::now();
+    duration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    outFile1 << "Algorithm: Selection Sort\n";
+    outFile1 << "Running Time:" << duration.count() << " nanoseconds" << "\n";
+    for (auto const &j: students) {
+        outFile1 << j << '\n';
     }
+    outFile1<<'\n'<<'\n';
     students = copy;
     // quick sort
-    startTime = std::chrono::steady_clock::now();
-    quick_sort(students,0,students.size());
-    endTime = std::chrono::steady_clock::now();
-    duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
-    outFile1<<"Algorithm: Quick Sort\n";
-    outFile1<<"Running Time:"<<duration.count()<<" milliseconds"<<"\n";
-    for (auto const &j:students) {
-        outFile1<<j<<'\n';
+    startTime = chrono::steady_clock::now();
+    quick_sort(students, 0, students.size());
+    endTime = chrono::steady_clock::now();
+    duration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    outFile1 << "Algorithm: Quick Sort\n";
+    outFile1 << "Running Time:" << duration.count() << " nanoseconds" << "\n";
+    for (auto const &j: students) {
+        outFile1 << j << '\n';
     }
+    outFile1<<'\n'<<'\n';
     students = copy;
+    //shell sort
+    startTime = chrono::steady_clock::now();
+    shellSort(students, students.size());
+    endTime = chrono::steady_clock::now();
+    duration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    outFile1 << "Algorithm: Shell Sort\n";
+    outFile1 << "Running Time:" << duration.count() << " nanoseconds" << "\n";
+    for (auto const &j: students) {
+        outFile1 << j << '\n';
+    }
+    outFile1<<'\n'<<'\n';
+    //Bubble sort
+    students = copy;
+    startTime = chrono::steady_clock::now();
+    BubbleSort(students, students.size());
+    endTime = chrono::steady_clock::now();
+    duration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    outFile1 << "Algorithm: Bubble Sort\n";
+    outFile1 << "Running Time:" << duration.count() << " nanoseconds" << "\n";
+    for (auto const &j: students) {
+        outFile1 << j << '\n';
+    }
+    outFile1<<'\n'<<'\n';
+    //Merge sort
+    students = copy;
+    startTime = chrono::steady_clock::now();
+    mergeSort(students, 0, students.size() - 1);
+    endTime = chrono::steady_clock::now();
+    duration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    outFile1 << "Algorithm: Merge Sort\n";
+    outFile1 << "Running Time:" << duration.count() << " nanoseconds" << "\n";
+    for (auto const &j: students) {
+        outFile1 << j << '\n';
+    }
     outFile1.close();
     //sort by name
     //insertion sort
@@ -105,36 +149,74 @@ void print(vector<t> students) {
         j.sortByGpa = false;
     }
     copy = students;
-    startTime = std::chrono::steady_clock::now();
-    insertion_sort(students,students.size());
-    endTime = std::chrono::steady_clock::now();
-    duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
-    outFile2<<"Algorithm: Insertion Sort\n";
-    outFile2<<"Running Time:"<<duration.count()<<" milliseconds"<<"\n";
-    for (auto const &j:students) {
-        outFile2<<j<<'\n';
+    startTime = chrono::steady_clock::now();
+    insertion_sort(students, students.size());
+    endTime = chrono::steady_clock::now();
+    duration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    outFile2 << "Algorithm: Insertion Sort\n";
+    outFile2 << "Running Time:" << duration.count() << " nanoseconds" << "\n";
+    for (auto const &j: students) {
+        outFile2 << j << '\n';
     }
+    outFile2<<'\n'<<'\n';
     //selection sort
     students = copy;
-    startTime = std::chrono::steady_clock::now();
-    selection(students,students.size());
-    endTime = std::chrono::steady_clock::now();
-    duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
-    outFile2<<"Algorithm: Selection Sort\n";
-    outFile2<<"Running Time:"<<duration.count()<<" milliseconds"<<"\n";
-    for (auto const &j:students) {
-        outFile2<<j<<'\n';
+    startTime = chrono::steady_clock::now();
+    selection(students, students.size());
+    endTime = chrono::steady_clock::now();
+    duration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    outFile2 << "Algorithm: Selection Sort\n";
+    outFile2 << "Running Time:" << duration.count() << " nanoseconds" << "\n";
+    for (auto const &j: students) {
+        outFile2 << j << '\n';
     }
-    //quick sort
+    outFile2<<'\n'<<'\n';
+    //Quick sort
     students = copy;
-    quick_sort(students,0,students.size());
-    endTime = std::chrono::steady_clock::now();
-    duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
-    outFile2<<"Algorithm: Quick Sort\n";
-    outFile2<<"Running Time:"<<duration.count()<<" milliseconds"<<"\n";
-    for (auto const &j:students) {
-        outFile2<<j<<'\n';
+    startTime = chrono::steady_clock::now();
+    quick_sort(students, 0, students.size());
+    endTime = chrono::steady_clock::now();
+    duration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    outFile2 << "Algorithm: Quick Sort\n";
+    outFile2 << "Running Time:" << duration.count() << " nanoseconds" << "\n";
+    for (auto const &j: students) {
+        outFile2 << j << '\n';
     }
+    outFile2<<'\n'<<'\n';
+    //Shell sort
     students = copy;
+    startTime = chrono::steady_clock::now();
+    shellSort(students, students.size());
+    endTime = chrono::steady_clock::now();
+    duration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    outFile2 << "Algorithm: Shell Sort\n";
+    outFile2 << "Running Time:" << duration.count() << " nanoseconds" << "\n";
+    for (auto const &j: students) {
+        outFile2 << j << '\n';
+    }
+    outFile2<<'\n'<<'\n';
+    //Bubble sort
+    students = copy;
+    startTime = chrono::steady_clock::now();
+    BubbleSort(students, students.size());
+    endTime = chrono::steady_clock::now();
+    duration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    outFile2 << "Algorithm: Bubble Sort\n";
+    outFile2 << "Running Time:" << duration.count() << " nanoseconds" << "\n";
+    for (auto const &j: students) {
+        outFile2 << j << '\n';
+    }
+    outFile2<<'\n'<<'\n';
+    //Merge sort
+    students = copy;
+    startTime = chrono::steady_clock::now();
+    mergeSort(students, 0, students.size() - 1);
+    endTime = chrono::steady_clock::now();
+    duration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    outFile2 << "Algorithm: Merge Sort\n";
+    outFile2 << "Running Time:" << duration.count() << " nanoseconds" << "\n";
+    for (auto const &j: students) {
+        outFile2 << j << '\n';
+    }
     outFile2.close();
 }

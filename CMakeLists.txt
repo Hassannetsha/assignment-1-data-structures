@@ -5,17 +5,14 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_executable(
         main.cpp
-        test.cpp
-        main.cpp
-        main.cpp
-        linkedQueue.h
-        Array_Based_Queue.cpp
+        part2/linkedQueue.h
+        part2/Array_Based_Queue.cpp
         Student.cpp
         Student.h
         SORTING/insertion_sort.h
         SORTING/quick_sort.h
         SORTING/selection_sort.h
-        CircularLinkedList.cpp
+        part2/CircularLinkedList.cpp
         SORTING/MergeSort.hpp
         SORTING/ShellSort.hpp
         SORTING/Bubble_sort.hpp

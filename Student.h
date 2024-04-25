@@ -23,10 +23,11 @@ private:
 public:
     Student() = default;
     Student(const string &id, const string &name, const int &gpa);
-    bool operator<(const Student &student);
     friend vector<Student> open_file();
+    bool operator<(const Student &student);
     bool operator<=(const Student &student) const;
     bool operator>(const Student &student);
+    bool operator>=(const Student &student);
     friend ostream &operator<<(ostream &os, const Student &student);
     template<typename t>
     friend void print(vector<t> students);
