@@ -7,16 +7,14 @@
 using namespace std;
 
 template<typename t>
-int partition(vector<t> &arr, int l, int h, int choice) {
+int partition(vector<t> &arr, int l, int h) {
     t pivot = arr[l];
     int i = l, j = h;
     do {
         do { i++; }
-        while (i < h-1 && ((!choice && arr[i].getGpa() <= pivot.getGpa())||
-               (choice && arr[i] <= pivot)));
+        while (i < h-1 && arr[i]<=pivot);
         do { j--; }
-        while (j> 0 &&(!choice && arr[j].getGpa() > pivot.getGpa()) ||
-               (choice && arr[j] > pivot));
+        while (j> 0 && arr[i]>pivot);
         if (i < j) {
             swap(arr[i], arr[j]);
         }
@@ -26,12 +24,12 @@ int partition(vector<t> &arr, int l, int h, int choice) {
 }
 
 template<typename t>
-void quick_sort(vector<t> &arr, int l, int h, int choice) {
+vector<t> quick_sort(vector<t>& arr, int l, int h) {
     int j;
     if (l < h) {
-        j = partition(arr, l, h, choice);
-        quick_sort(arr, l, j, choice);
-        quick_sort(arr, j + 1, h, choice);
+        j = partition(arr, l, h);
+        quick_sort(arr, l, j);
+        quick_sort(arr, j + 1, h);
     }
 }
 
