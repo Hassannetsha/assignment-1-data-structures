@@ -6,4 +6,5 @@ int main() {
     vector<Student> st;
     st = open_file();
     print(st);
+    cout<<"Printed in files";
 }
