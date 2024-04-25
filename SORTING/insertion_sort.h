@@ -6,7 +6,7 @@
 using namespace std;
 
 template<typename t>
-void insertion_sort(vector<t> &arr, int n) {
+void insertion_sort(vector<t> &arr, int n, int& comparisons) {
     for (int i = 1; i < n; i++) {
         t temp = arr[i];
         int j = i - 1;
@@ -14,6 +14,7 @@ void insertion_sort(vector<t> &arr, int n) {
         while (j > -1 && temp < arr[j]) {
             arr[j + 1] = arr[j];
             j--;
+            comparisons++;
         }
         // and then puts temp at the start
         arr[j + 1] = temp;

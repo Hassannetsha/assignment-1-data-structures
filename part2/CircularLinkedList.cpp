@@ -276,6 +276,7 @@ int main(){
     c.print();
     cout<<"_________________________________"<<"\n";
     c.insertAtTail(4);
+    c.print();
     cout<<boolalpha<<c.isempty()<<"\n";
     cout<<boolalpha<<c.isExist(4)<<"\n";
     c.removeAtHead();

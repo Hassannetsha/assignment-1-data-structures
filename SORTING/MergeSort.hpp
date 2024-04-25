@@ -2,7 +2,7 @@
 using namespace std;
 
 template<typename t>
-void merge(vector<t>& arr, int left, int mid, int right)
+void merge(vector<t>& arr, int left, int mid, int right,int& comparisons)
 {
     int n1 = mid - left + 1, n2 = right - mid;
     t L[n1], R[n2];
@@ -21,11 +21,13 @@ void merge(vector<t>& arr, int left, int mid, int right)
         {
             arr[k] = L[i];
             i++;
+            comparisons++;
         }
         else
         {
             arr[k] = R[j];
             j++;
+            comparisons++;
         }
         k++;
     }
@@ -33,30 +35,23 @@ void merge(vector<t>& arr, int left, int mid, int right)
     {
         arr[k] = L[i];
         i++; k++;
+        comparisons++;
     }
     while (j < n2)
     {
         arr[k] = R[j];
         j++; k++;
+        comparisons++;
     }
 }
 template<typename t>
-void mergeSort(vector<t>& arr, int left, int right)
+void mergeSort(vector<t>& arr, int left, int right,int& comaprisons)
 {
     if (left < right)
     {
         int mid = left + (right - left) / 2;
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid + 1, right);
-        merge(arr, left, mid, right);
+        mergeSort(arr, left, mid,comaprisons);
+        mergeSort(arr, mid + 1, right,comaprisons);
+        merge(arr, left, mid, right,comaprisons);
     }
 }
-
-//void print(int arr[], int size)
-//{
-//    for (int i = 0; i < size; i++)
-//    {
-//        cout<<arr[i] <<' ';
-//    }
-//    cout<<'\n';
-//}
