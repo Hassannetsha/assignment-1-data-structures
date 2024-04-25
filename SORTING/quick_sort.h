@@ -12,16 +12,19 @@ int partition(vector<t> &arr, int l, int h) {
     int i = l;
     int j = h;
     while (i < j) {
+        //sees first numbers smaller than pivot
         do {
             i++;
         } while (i < h && arr[i] <= p);
+        //sees first numbers greater than pivot
         do {
             j--;
         } while (j > 0 && arr[j] > p);
-
+        //sees if i less than j and swaps them
         if (i < j)
             swap(arr[i], arr[j]);
     }
+    //and then puts the pivot in the center between the smaller and the greater
     swap(arr[l], arr[j]);
     return j;
 }

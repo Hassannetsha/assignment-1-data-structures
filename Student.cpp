@@ -9,6 +9,7 @@ Student::Student(const string &id, const string &name, const int &gpa) {
     sortByGpa = true;
 }
 
+/*checks sort if sort by name or sort by GPA*/
 bool Student::operator<(const Student &student) {
     if (!sortByGpa) {
         return (this->name < student.name);
@@ -38,6 +39,14 @@ bool Student::operator>(const Student &student) {
     }
 }
 
+bool Student::operator>=(const Student &student) {
+    if (!sortByGpa) {
+        return (this->name >= student.name);
+    } else {
+        return (this->gpa >= student.gpa);
+    }
+}
+
 vector<Student> open_file() {
     vector<Student> students;
     ifstream file("students.txt");
@@ -58,14 +67,7 @@ vector<Student> open_file() {
     return students;
 }
 
-bool Student::operator>=(const Student &student) {
-    if (!sortByGpa) {
-        return (this->name >= student.name);
-    } else {
-        return (this->gpa >= student.gpa);
-    }
-}
-
+// prints every sort in the files
 template<typename t>
 void print(vector<t> students) {
     vector<t> copy = students;
@@ -81,7 +83,7 @@ void print(vector<t> students) {
     for (auto const &j: students) {
         outFile1 << j << '\n';
     }
-    outFile1<<'\n'<<'\n';
+    outFile1 << '\n' << '\n';
     students = copy;
     //selection sort
     startTime = chrono::steady_clock::now();
@@ -93,7 +95,7 @@ void print(vector<t> students) {
     for (auto const &j: students) {
         outFile1 << j << '\n';
     }
-    outFile1<<'\n'<<'\n';
+    outFile1 << '\n' << '\n';
     students = copy;
     // quick sort
     startTime = chrono::steady_clock::now();
@@ -105,7 +107,7 @@ void print(vector<t> students) {
     for (auto const &j: students) {
         outFile1 << j << '\n';
     }
-    outFile1<<'\n'<<'\n';
+    outFile1 << '\n' << '\n';
     students = copy;
     //shell sort
     startTime = chrono::steady_clock::now();
@@ -117,7 +119,7 @@ void print(vector<t> students) {
     for (auto const &j: students) {
         outFile1 << j << '\n';
     }
-    outFile1<<'\n'<<'\n';
+    outFile1 << '\n' << '\n';
     //Bubble sort
     students = copy;
     startTime = chrono::steady_clock::now();
@@ -129,7 +131,7 @@ void print(vector<t> students) {
     for (auto const &j: students) {
         outFile1 << j << '\n';
     }
-    outFile1<<'\n'<<'\n';
+    outFile1 << '\n' << '\n';
     //Merge sort
     students = copy;
     startTime = chrono::steady_clock::now();
@@ -158,7 +160,7 @@ void print(vector<t> students) {
     for (auto const &j: students) {
         outFile2 << j << '\n';
     }
-    outFile2<<'\n'<<'\n';
+    outFile2 << '\n' << '\n';
     //selection sort
     students = copy;
     startTime = chrono::steady_clock::now();
@@ -170,7 +172,7 @@ void print(vector<t> students) {
     for (auto const &j: students) {
         outFile2 << j << '\n';
     }
-    outFile2<<'\n'<<'\n';
+    outFile2 << '\n' << '\n';
     //Quick sort
     students = copy;
     startTime = chrono::steady_clock::now();
@@ -182,7 +184,7 @@ void print(vector<t> students) {
     for (auto const &j: students) {
         outFile2 << j << '\n';
     }
-    outFile2<<'\n'<<'\n';
+    outFile2 << '\n' << '\n';
     //Shell sort
     students = copy;
     startTime = chrono::steady_clock::now();
@@ -194,7 +196,7 @@ void print(vector<t> students) {
     for (auto const &j: students) {
         outFile2 << j << '\n';
     }
-    outFile2<<'\n'<<'\n';
+    outFile2 << '\n' << '\n';
     //Bubble sort
     students = copy;
     startTime = chrono::steady_clock::now();
@@ -206,7 +208,7 @@ void print(vector<t> students) {
     for (auto const &j: students) {
         outFile2 << j << '\n';
     }
-    outFile2<<'\n'<<'\n';
+    outFile2 << '\n' << '\n';
     //Merge sort
     students = copy;
     startTime = chrono::steady_clock::now();
