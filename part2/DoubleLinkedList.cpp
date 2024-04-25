@@ -227,9 +227,33 @@ public:
         {
             second = second->next;
         }
-        int temp = first->item;
-        first->item = second->item;
-        second->item = temp;
+
+        if (first->prev)
+            first->prev->next = second;
+        else
+            head = second;
+
+        if (second->prev)
+            second->prev->next = first;
+        else
+            head = first;
+
+        if (first->next)
+            first->next->prev = second;
+        else
+            tail = second;
+
+        if (second->next)
+            second->next->prev = first;
+        else
+            tail = first;
+
+        Node* temp = first->next;
+        first->next = second->next;
+        second->next = temp;
+        temp = first->prev;
+        first->prev = second->prev;
+        second->prev = temp;
     }
 
     bool isEmpty() const
