@@ -8,6 +8,7 @@ private:
         Node* next;
     };
     Node* head;
+    Node* rear;
     int size{};
 public:
     CircularLinkedList(){
@@ -44,20 +45,23 @@ public:
         }
         size++;
     }
-    void insertAtTail(T data){
-        Node* p = new Node;
-        p -> info = data;
-        p -> next = head;
-
-        if (isempty()){
+    void insertAtTail(T data) {
+        Node *p = new Node;
+        p->info = data;
+        p->next = head;
+        if (isempty()) {
             head = p;
-            head -> next = head;
-        } else{
-            Node* q = head;
-            while (  q -> next != nullptr && q -> next != head)
-                q = q ->next;
-            q -> next = p;
+            head->next = head;
+            rear = head;
         }
+        else {
+            Node *q = head;
+            while (q->next != nullptr && q->next != head)
+                q = q->next;
+            q->next = p;
+            rear = p;
+        }
+
         size++;
     }
     void insertAt(T data , int index){
@@ -150,24 +154,25 @@ public:
         }
         size = 0;
     }
-    void removeAtTail(){
-        if (isempty()){
-            cout<<"list is empty";
-            exit(0);
+    void removeAtTail() {
+        if (isempty()) {
+            cout << "list is empty";
         }
-        else if(head -> next == head){
+        else if (head->next == head) {
             delete head;
             head = nullptr;
+            rear = head;
         }
-        else{
-            Node* p = head , *q;
-            while (p -> next != head){
+        else {
+            Node *p = head, *q;
+            while (p->next != head) {
                 q = p;
-                p = p ->next;
+                p = p->next;
 
             }
             delete p;
-            q ->next = head;
+            q->next = head;
+            rear = q;
         }
         size--;
 
@@ -247,6 +252,62 @@ public:
     }
     int linkedListSize(){
         return size;
+    }
+    void swap(int x, int y) {
+        if (x < 0 || y < 0 || x >= size || y >= size) {
+            cout << "Index out of range";
+        } else if (isempty()) {
+            cout << "List is empty";
+        } else if (x > y) {
+            cout << "please enter the first num smaller than second num ";
+        } else if (x == y) {
+            return;
+        } else {
+            /*
+             * tx   ty
+             *      qx        qy  // qx -> next = qy -> next ; qy -> next = qx;
+             *      // tx -> next = qy; ty ->next = qy -> next; // wra b3d
+             *      // qx -> next = qy -> next ; qy -> next = qx -> next;
+             *      // tx -> next = qy; ty ->next = qx; // m4 wra b3d and edit
+             * qx   qy
+             * 0    1    2     3     4
+             * */
+            Node *qx = head, *tx = nullptr;
+            for (int i = 0; i < x && i < size; i++) {
+                tx = qx;
+                qx = qx->next;
+            }
+            Node *qy = head, *ty = nullptr;
+            for (int i = 0; i < y && i < size; i++) {
+                ty = qy;
+                qy = qy->next;
+            }
+            if (y == x + 1) {
+                qx->next = qy->next;
+
+                if (x != 0)
+                    tx->next = qy;
+                ty->next = qy->next;
+                qy->next = qx;
+            } else {
+                Node *copy = qx->next;
+                if (x != 0 || y != size - 1)
+                    qx->next = qy->next;
+                else {
+                    qx->next = qy;
+                }
+                qy->next = copy;/* 0 1 2 3 4 */
+                if (x != 0)
+                    tx->next = qy;
+                ty->next = qx;
+            }
+            if (y == size - 1)
+                rear = qx;
+            if (x == 0) {
+                head = qy;
+                rear->next = head;
+            }
+        }
     }
     void print(){
         Node* p = head;
