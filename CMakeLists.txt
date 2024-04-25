@@ -15,6 +15,8 @@ add_executable(
         SORTING/insertion_sort.h
         SORTING/quick_sort.h
         SORTING/selection_sort.h
-        SORTING/Sort.h
         CircularLinkedList.cpp
+        SORTING/MergeSort.hpp
+        SORTING/ShellSort.hpp
+        SORTING/Bubble_sort.hpp
 )

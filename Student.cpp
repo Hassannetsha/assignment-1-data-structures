@@ -1,8 +1,4 @@
 #include "Student.h"
-#include "SORTING/insertion_sort.h"
-#include "SORTING/selection_sort.h"
-#include "SORTING/quick_sort.h"
-#include <chrono>
 
 using namespace std;
 
@@ -27,35 +23,22 @@ ostream &operator<<(ostream &os, const Student &student) {
     return os;
 }
 
-string Student::getName() {
-    return name;
-}
-
-int Student::getGpa() const {
-    return gpa;
-}
-
-string Student::getId() {
-    return id;
-}
-
 bool Student::operator<=(const Student &student) const {
-    if(sortByGpa){ return (this->gpa <= student.gpa); }
-    else{return (this->name <= student.name);}
+    if(sortByGpa){
+        return (this->gpa <= student.gpa);
+    }
+    else{
+        return (this->name <= student.name);
+    }
 }
-
 bool Student::operator>(const Student &student) {
-    if(!sortByGpa){ return (this->name > student.name); }
-    else{return (this->name > student.name);}
+    if(!sortByGpa){
+        return (this->name > student.name);
+    }
+    else{
+        return (this->gpa > student.gpa);
+    }
 }
-// student < 1
-//bool operator<(const Student &student, const int& sortType) {
-//    if(sortType==0){
-//        return true;
-//    }
-//    return false;
-//}
-
 vector<Student> open_file() {
     vector<Student> students;
     ifstream file("students.txt");
@@ -79,7 +62,9 @@ vector<Student> open_file() {
 template<typename t>
 void print(vector<t> students) {
     vector<t> copy = students;
+    //sort by Gpa
     ofstream outFile1("SortedByGPA.txt");
+    //insertion sort
     auto startTime = std::chrono::steady_clock::now();
     insertion_sort(students,students.size());
     auto endTime = std::chrono::steady_clock::now();
@@ -90,6 +75,7 @@ void print(vector<t> students) {
         outFile1<<j<<'\n';
     }
     students = copy;
+    //selection sort
     startTime = std::chrono::steady_clock::now();
     selection(students,students.size());
     endTime = std::chrono::steady_clock::now();
@@ -100,6 +86,7 @@ void print(vector<t> students) {
         outFile1<<j<<'\n';
     }
     students = copy;
+    // quick sort
     startTime = std::chrono::steady_clock::now();
     quick_sort(students,0,students.size());
     endTime = std::chrono::steady_clock::now();
@@ -111,6 +98,8 @@ void print(vector<t> students) {
     }
     students = copy;
     outFile1.close();
+    //sort by name
+    //insertion sort
     ofstream outFile2("SortedByName.txt");
     for (auto &j: students) {
         j.sortByGpa = false;
@@ -125,6 +114,7 @@ void print(vector<t> students) {
     for (auto const &j:students) {
         outFile2<<j<<'\n';
     }
+    //selection sort
     students = copy;
     startTime = std::chrono::steady_clock::now();
     selection(students,students.size());
@@ -135,6 +125,7 @@ void print(vector<t> students) {
     for (auto const &j:students) {
         outFile2<<j<<'\n';
     }
+    //quick sort
     students = copy;
     quick_sort(students,0,students.size());
     endTime = std::chrono::steady_clock::now();

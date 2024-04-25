@@ -7,6 +7,13 @@
 #include <algorithm>
 #include <iomanip>
 #include "SORTING/insertion_sort.h"
+#include <chrono>
+#include "SORTING/insertion_sort.h"
+#include "SORTING/selection_sort.h"
+#include "SORTING/quick_sort.h"
+#include "SORTING/MergeSort.hpp"
+#include "SORTING/Bubble_sort.hpp"
+#include "SORTING/ShellSort.hpp"
 using namespace std;
 class Student {
 private:
@@ -17,14 +24,10 @@ public:
     Student() = default;
     Student(const string &id, const string &name, const int &gpa);
     bool operator<(const Student &student);
-//    friend bool operator<(const Student &student,const int& sortType);
     friend vector<Student> open_file();
     bool operator<=(const Student &student) const;
     bool operator>(const Student &student);
     friend ostream &operator<<(ostream &os, const Student &student);
-    string getId();
-    string getName();
-    int getGpa() const;
     template<typename t>
     friend void print(vector<t> students);
 private:

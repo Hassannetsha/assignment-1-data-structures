@@ -1,7 +1,7 @@
-#include "iostream"
+#include <vector>
 using namespace std;
 template<typename T>
-void BubbleSort(T arr[], int n){
+void BubbleSort(vector<T>& arr, int n){
     bool sorted = true;
     for (int i = 0; i < n; ++i) {
         T max = arr[0];
@@ -23,9 +23,4 @@ void BubbleSort(T arr[], int n){
         if (sorted) break;
 
     }
-    for (int i = 0; i < n; ++i) {
-        cout << arr[i] << " ";
-
-    }
-
 }
