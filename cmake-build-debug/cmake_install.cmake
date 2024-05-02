@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/1243h/OneDrive - Cairo University - Students/assignments/assignment-data-structures
+# Install script for directory: C:/Users/1243h/OneDrive - Cairo University - Students/assignments/20220112_20220015_20221061_20220080_A1_G11_G19_G12_G11
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/1243h/OneDrive - Cairo University - Students/assignments/assignment-data-structures/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/1243h/OneDrive - Cairo University - Students/assignments/20220112_20220015_20221061_20220080_A1_G11_G19_G12_G11/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

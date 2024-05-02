@@ -1,6 +1,6 @@
 Algorithm: Insertion Sort
 Number of comparisons: 5 comparisons
-Running Time:1300 nanoseconds
+Running Time:1200 nanoseconds
 Hassan Kamal
 97848
 1
@@ -40,7 +40,7 @@ Sara Ahmed
 
 Algorithm: Quick Sort
 Number of comparisons: 10 comparisons
-Running Time:1200 nanoseconds
+Running Time:1500 nanoseconds
 Hassan Kamal
 97848
 1
@@ -80,7 +80,7 @@ Sara Ahmed
 
 Algorithm: Bubble Sort
 Number of comparisons: 16 comparisons
-Running Time:1200 nanoseconds
+Running Time:1400 nanoseconds
 Hassan Kamal
 97848
 1
@@ -100,7 +100,7 @@ Sara Ahmed
 
 Algorithm: Merge Sort
 Number of comparisons: 12 comparisons
-Running Time:1700 nanoseconds
+Running Time:1800 nanoseconds
 Hassan Kamal
 97848
 1

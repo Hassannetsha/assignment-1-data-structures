@@ -1,6 +1,6 @@
 Algorithm: Insertion Sort
 Number of comparisons: 3 comparisons
-Running Time:900 nanoseconds
+Running Time:1400 nanoseconds
 Ali
 3541
 3
@@ -20,7 +20,7 @@ Sara Ahmed
 
 Algorithm: Selection Sort
 Number of comparisons: 3 comparisons
-Running Time:1100 nanoseconds
+Running Time:1700 nanoseconds
 Ali
 3541
 3
@@ -40,7 +40,7 @@ Sara Ahmed
 
 Algorithm: Quick Sort
 Number of comparisons: 5 comparisons
-Running Time:1100 nanoseconds
+Running Time:1600 nanoseconds
 Ali
 3541
 3
@@ -60,7 +60,7 @@ Sara Ahmed
 
 Algorithm: Shell Sort
 Number of comparisons: 3 comparisons
-Running Time:700 nanoseconds
+Running Time:900 nanoseconds
 Ali
 3541
 3
@@ -80,7 +80,7 @@ Sara Ahmed
 
 Algorithm: Bubble Sort
 Number of comparisons: 20 comparisons
-Running Time:1300 nanoseconds
+Running Time:1700 nanoseconds
 Ali
 3541
 3
@@ -100,7 +100,7 @@ Sara Ahmed
 
 Algorithm: Merge Sort
 Number of comparisons: 12 comparisons
-Running Time:1300 nanoseconds
+Running Time:2100 nanoseconds
 Ali
 3541
 3
